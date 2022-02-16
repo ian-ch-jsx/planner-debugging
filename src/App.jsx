@@ -9,8 +9,6 @@ import { PlannerProvider } from './context/PlannerContext';
 export default function App() {
   return (
     <>
-      {' '}
-      {/* TODO: Add PlannerProvider */}
       <PlannerProvider>
         <Header />
         <BrowserRouter>
