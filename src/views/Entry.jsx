@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory, Link } from 'react-router-dom';
 import { useEntries } from '../context/PlannerContext';
 
 import styles from './Entry.css';
@@ -8,11 +7,17 @@ import styles from './Entry.css';
 export default function Entry() {
   const { id } = useParams();
   const [entry, setEntry] = useState({});
-  const { entries, getEntry } = useEntries();
+  const { entries, getEntry, deleteEntry } = useEntries();
+  const history = useHistory();
 
   useEffect(() => {
     setEntry(getEntry(id));
   }, [id, entries.length]);
+
+  const handleDelete = (entry) => {
+    deleteEntry(entry);
+    history.push('/');
+  };
 
   return (
     <>
@@ -23,6 +28,7 @@ export default function Entry() {
         <h1>{entry?.title}</h1>
         <p>Due: {entry?.date}</p>
         <p>{entry?.content}</p>
+        <button onClick={() => handleDelete(entry)}>Delete</button>
       </article>
     </>
   );
