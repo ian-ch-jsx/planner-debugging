@@ -6,10 +6,8 @@ import styles from './Planner.css';
 export default function Planner() {
   return (
     <main className={styles.main}>
-      <PlannerProvider>
-        <AddEntry />
-        <Entries />
-      </PlannerProvider>
+      <AddEntry />
+      <Entries />
     </main>
   );
 }
